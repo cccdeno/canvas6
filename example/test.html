@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+  canvas { border: 2px solid #aaaaaa; border-radius: 5px; display: inline-block;  }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas1" width="400" height="400"></canvas>
+  <!--<script type="module" src="test.js"></script>-->
+  <script type="module">
+    import * as C from "../src/canvas6.js"
+
+    function main() {
+      var g = C.canvas2d("canvas1")
+
+      var x = [0, 100, 200, 300]
+      var y = [100, 0,  100, 0 ]
+      C.drawPath(g, x, y)
+
+      var x = C.steps(-10, 10, 0.1)
+      var y = x.map((x)=>Math.sin(x))
+      C.drawPathBound(g, x, y, {x:-10,y:-10,width:20,height:20})
+    }
+
+    main()
+  </script>
+</body>
+
+</html>
