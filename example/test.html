@@ -4,26 +4,93 @@
 <head>
   <meta charset="UTF-8">
   <style>
-  canvas { border: 2px solid #aaaaaa; border-radius: 5px; display: inline-block;  }
+    canvas {
+      border: 2px solid #aaaaaa;
+      border-radius: 5px;
+      display: inline-block;
+    }
   </style>
 </head>
 
 <body>
-  <canvas id="canvas1" width="400" height="400"></canvas>
+  <canvas id="canvas0" width="400" height="200"></canvas>
+  <canvas id="canvas1" width="400" height="200"></canvas>
+  <canvas id="canvas2" width="400" height="400"></canvas>
+  <canvas id="canvas3" width="400" height="400"></canvas>
+  <canvas id="canvas4" width="400" height="400"></canvas>
+  <canvas id="canvas5" width="400" height="400"></canvas>
   <!--<script type="module" src="test.js"></script>-->
   <script type="module">
     import * as C from "../src/canvas6.js"
 
-    function main() {
-      var g = C.canvas2d("canvas1")
-
+    function canvas0() {
+      var g = C.canvas2d("canvas0")
       var x = [0, 100, 200, 300]
-      var y = [100, 0,  100, 0 ]
+      var y = [100, 0, 100, 0]
       C.drawPath(g, x, y)
+      g.ctx.fillText('Hello Canvas!', 10, 50)
+    }
 
-      var x = C.steps(-10, 10, 0.1)
-      var y = x.map((x)=>Math.sin(x))
-      C.drawPathBound(g, x, y, {x:-10,y:-10,width:20,height:20})
+    function canvas1() {
+      var g = C.canvas2d("canvas1")
+      C.setWindow(g, 0, 10, -2, 2)
+      var x = C.steps(0, 10, 0.1)
+      var y = x.map((x) => Math.sin(2 * x))
+      C.drawPath(g, x, y)
+    }
+
+    function canvas2() {
+      var g = C.canvas2d("canvas2")
+      C.setWindow(g, -2, 2, -2, 2)
+      var xy = []
+      for (var x = -2; x < 2; x += 0.3) {
+        for (var y = -2; y < 2; y += 0.3) {
+          xy.push({ x: x, y: y, dx: 0.1, dy: 0.2 })
+        }
+      }
+      C.drawField(g, xy)
+    }
+
+    function canvas3() {
+      var g = C.canvas2d("canvas3")
+      C.setWindow(g, -5, 5, -5, 5)
+      var xy = []
+      for (var x = -5; x < 5; x += 0.3) {
+        for (var y = -5; y < 5; y += 0.3) {
+          xy.push({ x: x, y: y, dx: 0.3 * x, dy: 0.3 * (-y) })
+        }
+      }
+      C.drawField(g, xy)
+    }
+
+    function canvas4() {
+      var g = C.canvas2d("canvas4")
+      C.setWindow(g, -5, 5, -5, 5)
+      var xy = []
+      for (var x = -5; x < 5; x += 0.3) {
+        for (var y = -5; y < 5; y += 0.3) {
+          xy.push({ x: x, y: y, dx: Math.random()-0.5, dy: Math.random()-0.5 })
+        }
+      }
+      C.drawField(g, xy)
+    }
+
+    function canvas5() {
+      var g = C.canvas2d("canvas5")
+      C.setWindow(g, -5, 5, -5, 5)
+      var r = C.steps(0, 10, 0.3)
+      var x = r.map(Math.sin) // var x = r.sin()
+      var y = r.map(Math.cos) // var y = r.cos()
+      C.drawPath(g, x, y)
+    }
+
+    function main() {
+      canvas0()
+      canvas1()
+      canvas2()
+      canvas3()
+      canvas4()
+      canvas5()
     }
 
     main()
