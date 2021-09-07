@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" />
+  <style>
+    .chart { 
+      border: 2px solid #aaaaaa;
+      border-radius: 5px;
+      display: inline-block;
+      width:400px;
+      height:400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="chart1" class="chart"></div>
+  <div id="chart2" class="chart"></div>
+  <div id="chart3" class="chart"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <script type="module">
+    import * as C from "../mod.js"
+
+    function chart(path, style) {
+      var g = C.chart3D(path)
+      C.curveChart3D(g, style, function (x, y) {
+        return (Math.sin(x / 50) * Math.cos(y / 50) * 50 + 50)
+      })
+      C.showChart3D(g)
+    }
+
+    function main() {
+      chart('#chart1', 'surface')
+      chart('#chart2', 'grid')
+      chart('#chart3', 'bar')
+    }
+
+    main()
+  </script>
+</body>
+
+</html>

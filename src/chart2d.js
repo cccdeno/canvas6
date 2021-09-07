@@ -1,42 +1,28 @@
 import * as L from './lib.js'
+import 'https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js'
+import 'https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js'
 
-export function chart2d(path) {
+export function chart(path) {
     var g = {
-        bindto:path, 
-        data: { 
-            types:{}, 
-            xs:{}, 
-            columns:[] 
+        bindto: path,
+        data: {
+            types: {},
+            xs: {},
+            columns: []
         }
     }
     return g
 }
 
-function curveData(f, from = -10, to = 10, step = 0.1) {
+export function curveChart(g, name, f, from = -10, to = 10, step = 0.1) {
     var x = L.steps(from, to, step)
     var y = x.map(f)
-    return { type: 'curve', x: x, y: y }
-}
-
-// type : line, spline, step, area, area-spline, area-step, bar, scatter, pie, donut, gauge
-function draw(g, name, x, y, type) {
-    /*
-    g.data.x = 'x'
-    g.data.columns.push(['x'].concat(x))
-    g.data.columns.push([name].concat(y))
-    */
-    g.data.types[name] = type
+    g.data.types[name] = 'line'
     g.data.xs[name] = name + 'x'
     g.data.columns.push([name + 'x'].concat(x))
     g.data.columns.push([name].concat(y))
 }
 
-export function curveChart(g, name, f, from = -10, to = 10, step = 0.1) {
-    var rg = curveData(f, from, to, step)
-    draw(g, name, rg.x, rg.y, 'line')
-}
-
-export function showChart2d(g) {
-    // console.log('g=', JSON.stringify(g, null, 2))
+export function showChart(g) {
     return c3.generate(g)
 }

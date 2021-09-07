@@ -7,7 +7,7 @@ var gOptions = {
     strokeStyle: '#336699'
 }
 
-export function canvas2d(path, options = gOptions) {
+export function canvas2D(path, options = gOptions) {
     var canvas = document.querySelector(path)
     var ctx = canvas.getContext('2d')
     Object.assign(ctx, options) // 設定 font, lineWidth, ...
