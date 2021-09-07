@@ -6,6 +6,7 @@ export function chart(path) {
     var g = {
         bindto: path,
         data: {
+            type: 'line',
             types: {},
             xs: {},
             columns: []
@@ -21,6 +22,28 @@ export function curveChart(g, name, f, from = -10, to = 10, step = 0.1) {
     g.data.xs[name] = name + 'x'
     g.data.columns.push([name + 'x'].concat(x))
     g.data.columns.push([name].concat(y))
+}
+
+export function addChart(g, name, style, x, y) {
+    g.data.types[name] = style
+    g.data.xs[name] = name + 'x'
+    g.data.columns.push([name + 'x'].concat(x))
+    g.data.columns.push([name].concat(y))
+}
+
+export function pieChart(g, countMap) {
+    g.data.type = 'pie'
+    for (var name in countMap) {
+        var count = countMap[name]
+        g.data.columns.push([name, count])
+    }
+}
+
+export function timeChart(g, x, timeSeries) {
+    g.data.x = 'x'
+    g.axis = {}
+    g.axis.x = { type: 'timeseries', tick: { format: '%Y-%m-%d' } }
+    g.data.columns = [ ['x', ...x], ...timeSeries]
 }
 
 export function showChart(g) {
