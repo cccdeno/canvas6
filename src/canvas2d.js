@@ -1,6 +1,4 @@
 // 注意，不能用 CSS 設定 width, height, 否則繪圖會有扭曲放大的效果。
-const EPSILON = 0.000000001
-
 var gOptions = {
     font: '30px Arial',
     lineWidth: 2,
@@ -9,16 +7,8 @@ var gOptions = {
     strokeStyle: '#336699'
 }
 
-export function steps(from, to, step = 1) {
-    var a = []
-    for (var t = from; t <= to; t += step) {
-        a.push(t)
-    }
-    return a
-}
-
-export function canvas2d(id, options = gOptions) {
-    var canvas = document.getElementById(id)
+export function canvas2d(path, options = gOptions) {
+    var canvas = document.querySelector(path)
     var ctx = canvas.getContext('2d')
     Object.assign(ctx, options) // 設定 font, lineWidth, ...
     let g = { ctx }

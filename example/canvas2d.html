@@ -21,10 +21,10 @@
   <canvas id="canvas5" width="400" height="400"></canvas>
   <!--<script type="module" src="test.js"></script>-->
   <script type="module">
-    import * as C from "../src/canvas6.js"
+    import * as C from "../mod.js"
 
     function canvas0() {
-      var g = C.canvas2d("canvas0")
+      var g = C.canvas2d("#canvas0")
       var x = [0, 100, 200, 300]
       var y = [100, 0, 100, 0]
       C.drawPath(g, x, y)
@@ -32,7 +32,7 @@
     }
 
     function canvas1() {
-      var g = C.canvas2d("canvas1")
+      var g = C.canvas2d("#canvas1")
       C.setWindow(g, 0, 10, -2, 2)
       var x = C.steps(0, 10, 0.1)
       var y = x.map((x) => Math.sin(2 * x))
@@ -40,7 +40,7 @@
     }
 
     function canvas2() {
-      var g = C.canvas2d("canvas2")
+      var g = C.canvas2d("#canvas2")
       C.setWindow(g, -2, 2, -2, 2)
       var xy = []
       for (var x = -2; x < 2; x += 0.3) {
@@ -52,7 +52,7 @@
     }
 
     function canvas3() {
-      var g = C.canvas2d("canvas3")
+      var g = C.canvas2d("#canvas3")
       C.setWindow(g, -5, 5, -5, 5)
       var xy = []
       for (var x = -5; x < 5; x += 0.3) {
@@ -64,7 +64,7 @@
     }
 
     function canvas4() {
-      var g = C.canvas2d("canvas4")
+      var g = C.canvas2d("#canvas4")
       C.setWindow(g, -5, 5, -5, 5)
       var xy = []
       for (var x = -5; x < 5; x += 0.3) {
@@ -76,7 +76,7 @@
     }
 
     function canvas5() {
-      var g = C.canvas2d("canvas5")
+      var g = C.canvas2d("#canvas5")
       C.setWindow(g, -5, 5, -5, 5)
       var r = C.steps(0, 10, 0.3)
       var x = r.map(Math.sin) // var x = r.sin()
